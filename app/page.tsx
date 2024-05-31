@@ -1,8 +1,8 @@
 
 
 import Header from '../components/Header.js';
-import Banner from '../components/banner.js';
-import Carousel from '../components/carousel.js';
+import Banner from '../components/Banner.js';
+import Carousel from '../components/Carousel.js';
 
 
 export default function Home() {
