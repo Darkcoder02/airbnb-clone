@@ -1,18 +1,11 @@
-'use client'
-import Image from "next/image";
+
+
 import Header from '../components/Header.js';
 import Banner from '../components/banner.js';
 import Carousel from '../components/carousel.js';
-import { useEffect, useState } from "react";
 
-export default function Home() {
-  const [data, setData] = useState([]);
 
-  useEffect(()=>{
-    fetch('https://links.papareact.com/pyp').then(response => response.json())
-    .then(json => setData(json))
-    .catch(error => console.error(error));
-  },[])
+export default function Home({exploreData}) {
   return (
     <div className="">
       <Header/>
@@ -24,7 +17,7 @@ export default function Home() {
         <section className='pt-6'>
           <h2 className="text-4xl font-semibold pb-5">Explore</h2>
 
-          {data?.map((item) => (
+          {exploreData?.map((item) => (
             <h1>{item.location}</h1>
           ))}
         </section>
@@ -32,3 +25,12 @@ export default function Home() {
     </div>
   );
 }
+
+export async function getProps() {
+  const exploreData = await fetch('https://links.papareact.com/pyp').then((response) => response.json);
+  return {
+    props:{
+      exploreData
+    }
+  }
+};
