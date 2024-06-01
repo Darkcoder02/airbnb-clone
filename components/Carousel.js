@@ -43,7 +43,7 @@ function Carousel() {
         ]
       };
       return (
-        <div>
+        <div className="slider-container">
           <Slider {...settings} className="flex items-center justify-center">
             <div className="flex items-center justify-center">
               <AcademicCapIcon className='h-8 text-gray-600 text-center'/>

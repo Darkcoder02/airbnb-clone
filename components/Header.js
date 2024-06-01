@@ -1,11 +1,34 @@
+'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '../assets/pngwing.com.png'
-import {MagnifyingGlassIcon, GlobeAsiaAustraliaIcon, Bars3Icon, UserCircleIcon} from '@heroicons/react/24/solid'
+import {MagnifyingGlassIcon, GlobeAsiaAustraliaIcon, Bars3Icon, UserCircleIcon, UserIcon} from '@heroicons/react/24/solid';
+import 'react-date-range/dist/styles.css'; 
+import 'react-date-range/dist/theme/default.css'; 
+import { DateRangePicker } from 'react-date-range';
+
 function Header() {
-  return (
+    const[search, setSearch] = useState("");
+    const[startDate, setStartDate] = useState(new Date());
+    const[endDate, setEndDate] = useState(new Date());
+    const [noOfGuests, setNoOfGuests] = useState(1) 
+    const selectionRange = {
+        startDate: startDate,
+        endDate: endDate,
+        key:'selection'
+    }
+
+    const handleSelect = (ranges) => {
+        setStartDate(ranges.selection.startDate);
+        setEndDate(ranges.selection.endDate);
+    }
+
+    const resetInput = () => {
+        setSearch("");
+    }
+    return (
     <div className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md py-4 px-4 md:px-8">
-        <div className="relative flex items-center h-14 cursor-pointer my-auto">
+        <div className="relative flex items-center h-10 md:h-14 cursor-pointer my-auto">
             <Image
                 src={logo}
                 layout='fill'
@@ -15,11 +38,13 @@ function Header() {
         </div>
 
 
-        <div className='md:border-2 border-gray-100 flex items-center p-2 rounded-full md:shadow-md'>
+        <div className='md:border-2 border-gray-100 flex items-center py-2 rounded-full md:shadow-md'>
             <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             type="text"
             placeholder='Search Destinations'
-            className='flex-grow bg-transparent outline-none'
+            className='flex-grow bg-transparent text-sm outline-none p-1 sm:pl-5'
             />
             <MagnifyingGlassIcon className='bg-orange-600 h-8 text-white rounded-full p-2 cursor-pointer hidden md:inline-flex md:mx-2'/>
         </div>
@@ -34,7 +59,30 @@ function Header() {
             </div>
         </div>
 
-
+        {search && 
+        <div className='flex flex-col col-span-3 mx-auto mt-4'>
+            <DateRangePicker
+            ranges={[selectionRange]}
+            minDate={new Date()}
+            rangeColors={["#FF5A5F"]}
+            onChange={handleSelect}
+            />
+            <div className='flex items-center border-b pb-4'>
+                <h2 className='text-2xl flex-grow font-semibold'>Number of People</h2>
+                <UserIcon className='h-6'/>
+                <input
+                type='number'
+                value={noOfGuests}
+                onChange={(e)=>setNoOfGuests(e.target.value)}
+                min={1}
+                className='w-12 pl-2 outline-none text-lg'/>
+            </div>
+            <div className='flex items-center'>
+                <button onClick={resetInput} className='flex-grow text-gray-500'>Cancel</button>
+                <button className='flex-grow text-red-500'>Search</button>
+            </div>
+        </div>
+        }
     </div>
     
   )
