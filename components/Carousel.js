@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {AcademicCapIcon, Battery100Icon, BoltIcon, CheckIcon, CurrencyDollarIcon, VideoCameraIcon, WifiIcon, TvIcon, ShoppingBagIcon,BeakerIcon} from '@heroicons/react/24/solid'
 
+
 function Carousel() {
     var settings = {
         dots: true,
@@ -50,55 +51,55 @@ function Carousel() {
               <p>AcademicCapIcon</p>
             </div>
             <div className="flex items-center justify-center">
-              <Battery100Icon className='h-8 text-red-400 hover:text-gray-400'/>
+              <Battery100Icon className='carousel-card'/>
                 <p>Battery100Icon</p>
             </div >
             <div className="flex items-center justify-center">
-              <BoltIcon className='h-8 text-red-400 hover:text-gray-400'/>
+              <BoltIcon className='carousel-card'/>
               <p>BoltIcon</p>
             </div>
             <div className="flex items-center justify-center">
-              <CheckIcon className='h-8 text-red-400 hover:text-gray-400'/>
+              <CheckIcon className='carousel-card'/>
               <p>CheckIcon</p>
             </div>
             <div >
-              <CurrencyDollarIcon className='h-8 text-red-400 hover:text-gray-400'/>
+              <CurrencyDollarIcon className='carousel-card'/>
               <p>CurrencyDollarIcon</p>
             </div>
             <div >
-              <VideoCameraIcon className='h-8 text-red-400 hover:text-gray-400'/>
+              <VideoCameraIcon className='carousel-card'/>
               <p>VideoCameraIcon</p>
             </div>
             <div >
-              <WifiIcon className='h-8 text-red-400 hover:text-gray-400'/>
+              <WifiIcon className='carousel-card'/>
               <p>WifiIcon</p>
             </div>
             <div >
-              <TvIcon className='h-8 text-red-400 hover:text-gray-400'/>
+              <TvIcon className='carousel-card'/>
               <p>TvIcon</p>
             </div>
             <div >
-                <ShoppingBagIcon className='h-8 text-red-400 hover:text-gray-400'/>
+                <ShoppingBagIcon className='carousel-card'/>
                 <p>ShoppingBagIcon</p>
             </div>
             <div>
-                <BeakerIcon className='h-8 text-red-400 hover:text-gray-400'/>
+                <BeakerIcon className='carousel-card'/>
                 <p>BeakerIcon</p>
             </div>
             <div className="flex items-center justify-center">
-              <AcademicCapIcon className='h-8 text-red-400 hover:text-gray-400'/>
+              <AcademicCapIcon className='carousel-card'/>
               <p>AcademicCap</p>
             </div>
             <div className="flex items-center justify-center">
-              <AcademicCapIcon className='h-8 text-red-400 hover:text-gray-400'/>
+              <AcademicCapIcon className='carousel-card'/>
               <p>AcademicCap</p>
             </div>
             <div className="flex items-center justify-center">
-              <AcademicCapIcon className='h-8 text-red-400 hover:text-gray-400'/>
+              <AcademicCapIcon className='carousel-card'/>
               <p>AcademicCap</p>
             </div>
             <div className="flex items-center justify-center">
-              <AcademicCapIcon className='h-8 text-red-400 hover:text-gray-400'/>
+              <AcademicCapIcon className='carousel-card'/>
               <p>AcademicCap</p>
             </div>
           </Slider>

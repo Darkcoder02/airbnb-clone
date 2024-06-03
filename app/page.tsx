@@ -2,7 +2,11 @@ import Header from '../components/Header';
 import Banner from '../components/Banner';
 import Carousel from '../components/Carousel';
 import SmallCard from '../components/SmallCard';
+import {Metadata} from 'next';
 
+export const metadata: Metadata = {
+  title: 'airbnb-clone'
+}
 
 async function getExploreData(){
   const exploreData = await fetch('https://www.jsonkeeper.com/b/4G1G',{

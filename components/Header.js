@@ -1,22 +1,36 @@
 'use client'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import logo from '../assets/pngwing.com.png'
 import {MagnifyingGlassIcon, GlobeAsiaAustraliaIcon, Bars3Icon, UserCircleIcon, UserIcon} from '@heroicons/react/24/solid';
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'; 
 import { DateRangePicker } from 'react-date-range';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 function Header() {
+    const searchParams = useSearchParams();
+    const pathname = '/search';
     const[search, setSearch] = useState("");
     const[startDate, setStartDate] = useState(new Date());
     const[endDate, setEndDate] = useState(new Date());
-    const [noOfGuests, setNoOfGuests] = useState(1) 
+    const [noOfGuests, setNoOfGuests] = useState(1);
+    const router = useRouter();
     const selectionRange = {
         startDate: startDate,
         endDate: endDate,
         key:'selection'
     }
+
+    const createQueryString = useCallback(
+        (location, startdate, enddate, noofguests) => {
+          const params = new URLSearchParams(searchParams);
+          params.set(location, startdate, enddate, noofguests)
+     
+          return params.toString()
+        },
+        [searchParams]
+    )
 
     const handleSelect = (ranges) => {
         setStartDate(ranges.selection.startDate);
@@ -28,7 +42,9 @@ function Header() {
     }
     return (
     <div className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md py-4 px-4 md:px-8">
-        <div className="relative flex items-center h-10 md:h-14 cursor-pointer my-auto">
+        <div 
+        onClick={()=>router.push("/")}
+        className="relative flex items-center h-10 md:h-14 cursor-pointer my-auto">
             <Image
                 src={logo}
                 layout='fill'
@@ -77,9 +93,9 @@ function Header() {
                 min={1}
                 className='w-12 pl-2 outline-none text-lg'/>
             </div>
-            <div className='flex items-center'>
+            <div className='flex items-center mt-2'>
                 <button onClick={resetInput} className='flex-grow text-gray-500'>Cancel</button>
-                <button className='flex-grow text-red-500'>Search</button>
+                <button onClick={()=>router.push(pathname+'?'+createQueryString(search,startDate.toISOString(),endDate.toISOString(),noOfGuests))} className='flex-grow text-red-500'>Search</button>
             </div>
         </div>
         }
